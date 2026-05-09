@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useUserStore } from '../stores/useUserStore';
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 const apiClient = axios.create({
-  baseURL: '/api',
+  baseURL: API_URL ? `${API_URL}/api` : '/api',
   timeout: 10_000,
   headers: { 'Content-Type': 'application/json' },
 });

@@ -8,9 +8,11 @@ import { useUserStore } from '../stores/useUserStore';
 // Singleton socket connection
 let socketInstance: Socket | null = null;
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 export function getSocket(): Socket {
   if (!socketInstance) {
-    socketInstance = io('/', {
+    socketInstance = io(API_URL || '/', {
       path: '/socket.io',
       transports: ['websocket', 'polling'],
       reconnectionDelay: 1000,
